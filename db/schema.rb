@@ -24,20 +24,20 @@ ActiveRecord::Schema.define(version: 2020_07_13_223353) do
   create_table "commits", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "tasks_id"
-    t.integer "workers_id"
+    t.integer "task_id"
+    t.integer "worker_id"
     t.integer "type"
     t.string "note"
-    t.index ["tasks_id"], name: "index_commits_on_tasks_id"
-    t.index ["workers_id"], name: "index_commits_on_workers_id"
+    t.index ["task_id"], name: "index_commits_on_task_id"
+    t.index ["worker_id"], name: "index_commits_on_worker_id"
   end
 
   create_table "projects", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.integer "workers_id"
-    t.index ["workers_id"], name: "index_projects_on_workers_id"
+    t.integer "worker_id"
+    t.index ["worker_id"], name: "index_projects_on_worker_id"
   end
 
   create_table "stamps", force: :cascade do |t|
@@ -45,16 +45,18 @@ ActiveRecord::Schema.define(version: 2020_07_13_223353) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "start_at"
     t.string "end_at"
-    t.integer "badges_id"
-    t.index ["badges_id"], name: "index_stamps_on_badges_id"
+    t.integer "badge_id"
+    t.index ["badge_id"], name: "index_stamps_on_badge_id"
   end
 
   create_table "tasks", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "project_id"
     t.integer "status"
     t.string "description"
     t.datetime "deadline"
+    t.index ["project_id"], name: "index_stamps_on_project_id"
   end
 
   create_table "tasks_workers", id: false, force: :cascade do |t|
@@ -67,16 +69,17 @@ ActiveRecord::Schema.define(version: 2020_07_13_223353) do
   create_table "teams", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
   end
 
   create_table "workers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "name_id"
+    t.integer "team_id"
     t.integer "role"
     t.string "name"
     t.string "email"
-    t.index ["name_id"], name: "index_workers_on_name_id"
+    t.index ["team_id"], name: "index_workers_on_team_id"
   end
 
 end

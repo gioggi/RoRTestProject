@@ -1,0 +1,7 @@
+@projects.map do |project|
+  {
+      id: project.id,
+      name: project.name,
+      pm: project.project_manager_name
+  }
+end

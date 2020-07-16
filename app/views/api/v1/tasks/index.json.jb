@@ -1,0 +1,9 @@
+@tasks.map do |task|
+  {
+    id: task.id,
+    task: task.description,
+    status: task.status,
+    deadline: task.deadline,
+    workers: task.workers.map{|w| {id: w.id, name: w.name}}
+  }
+end

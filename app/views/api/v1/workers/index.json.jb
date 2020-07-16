@@ -1,0 +1,9 @@
+@workers.map do |worker|
+  {
+    id: worker.id,
+    name: worker.name,
+    email: worker.email,
+    role: worker.role,
+    team: worker.team_name
+  }
+end

@@ -1,0 +1,7 @@
+{
+    id: @worker.id,
+    name: @worker.name,
+    email: @worker.email,
+    team: @worker.team.name,
+    role: @worker.role
+}
