@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2020_07_13_223353) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "task_id"
     t.integer "worker_id"
-    t.integer "type"
+    t.integer "kind"
     t.string "note"
     t.index ["task_id"], name: "index_commits_on_task_id"
     t.index ["worker_id"], name: "index_commits_on_worker_id"

@@ -3,6 +3,6 @@ json = {}
   {
     id: team.id,
     name: team.name,
-    workers: team.workers.map{|w| {id: id, name: w.name}}
+    workers: team.workers.map{|w| {id: w.id, name: w.name}}
   }
 end

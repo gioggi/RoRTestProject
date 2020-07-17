@@ -12,6 +12,10 @@ class Worker < ApplicationRecord
     role == 'CEO'
   end
 
+  def fetch_task_commits(task_id)
+    Task.find(task_id).commits.where(:worker_id => self.id)
+  end
+
   def team_name
     team.name if team
   end

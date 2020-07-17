@@ -1,0 +1,7 @@
+{
+  id: @commit.id,
+  worker: @commit.worker.name,
+  task: @commit.task.id,
+  note: @commit.note,
+  kind: @commit.kind
+}

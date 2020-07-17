@@ -39,7 +39,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       t.timestamps
       t.belongs_to :task
       t.belongs_to :worker
-      t.integer :type
+      t.integer :kind
       t.string :note
     end
     create_join_table :workers, :tasks do |t|

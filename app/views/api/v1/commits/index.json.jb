@@ -1,0 +1,9 @@
+@commits.map do |commit|
+  {
+      id: commit.id,
+      worker: commit.worker.name,
+      task: commit.task.name,
+      note: commit.note,
+      kind: commit.kind
+  }
+end

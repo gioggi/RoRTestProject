@@ -1,6 +1,7 @@
 class Task < ApplicationRecord
   has_and_belongs_to_many :workers
   belongs_to :project
+  has_many :commits
   enum status: [:Assigned, :InProgress, :Finish]
   validates_presence_of :deadline, :description, :status, :project
   before_save :check_worker_role
@@ -20,7 +21,17 @@ class Task < ApplicationRecord
     end
   end
 
+  def self.search_cross_tasks
+    tasks = []
+    Task.all.each{|task| tasks << task if task.workers.group_by(&:team_id).count >= 2}
+    tasks
+  end
+
+  def self.search_expired_tasks
+    Task.all.where('deadline < ? ', DateTime.now)
+  end
+
   def check_worker_role
-    self.workers.each{ |w|  raise StandardError.new "Worker #{w.name} isn't a DEV" if w.role != "DEV" }
+    self.workers.each{ |w|  raise StandardError.new "Worker #{w.name} isn't a DEV" if !w.DEV? }
   end
 end

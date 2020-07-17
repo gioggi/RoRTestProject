@@ -4,6 +4,12 @@
     task: task.description,
     status: task.status,
     deadline: task.deadline,
-    workers: task.workers.map{|w| {id: w.id, name: w.name}}
+    workers: task.workers.map{|w| {
+        id: w.id,
+        name: w.name,
+        team_id: (w.team.name if w.team),
+        comments: w.fetch_task_commits(task.id)
+      }
+    }
   }
 end
